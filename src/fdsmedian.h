@@ -3,11 +3,9 @@
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
-#elif !defined(WIN32)
-#include "WProgram.h"
 #else
-#include <cstdint>
-#include <cstdlib>
+#include "Arduino.h"
+//#include "WProgram.h"
 #endif
 
 #define FDS_MEDIAN_VERSION "0.0.1"

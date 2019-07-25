@@ -9,4 +9,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_PLATFORM_INDEPENDENT_CODE ON)
 
+include_directories(${CMAKE_SOURCE_DIR}/extern/arduinomock)
+
 add_library(ArduinoMedianLib fdsmedian.cpp fdsmedian.h)
