@@ -1,4 +1,6 @@
-#include <Arduino.h>
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#endif
 
 #include "fdsmedian.h"
 
@@ -39,7 +41,7 @@ MEDIAN_TYPE Median::median() {
   case 1:
     return values_[0];
   case 2:
-    return (values_[0] + values_[1]) / 2.0;
+    return (values_[0] + values_[1]) / 2.0F;
   default:
     if (issorted_ == false) {
       MEDIAN_SORT();
@@ -47,7 +49,7 @@ MEDIAN_TYPE Median::median() {
     if (count_ & 0x01)
       return values_[p_[count_/2]];
     else
-      return (values_[p_[count_/2]] + values_[p_[count_/2 - 1]]) / 2.0;
+      return (values_[p_[count_/2]] + values_[p_[count_/2 - 1]]) / 2.0F;
   }
 }
 
@@ -63,7 +65,7 @@ void Median::bubblesort()
     {
       if (values_[p_[j-1]] > values_[p_[j]])
       {
-        uint8_t t = p_[j - 1];
+        t = p_[j - 1];
         p_[j- 1] = p_[j];
         p_[j] = t;
         issorted_ = false;
