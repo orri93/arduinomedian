@@ -1,7 +1,3 @@
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#endif
-
 #include "fdsmedian.h"
 
 namespace fds {
@@ -44,7 +40,11 @@ MEDIAN_TYPE Median::median() {
     return (values_[0] + values_[1]) / 2.0F;
   default:
     if (issorted_ == false) {
-      MEDIAN_SORT();
+#if defined(MEDIAN_SORT_INSERT)
+      insertionsort();
+#else
+      bubblesort()>
+#endif
     }
     if (count_ & 0x01)
       return values_[p_[count_/2]];
@@ -53,7 +53,22 @@ MEDIAN_TYPE Median::median() {
   }
 }
 
-#if MEDAIN_SORT == bubblesort
+#if defined(MEDIAN_SORT_INSERT)
+void Median::insertionsort() {
+  uint8_t i, j, t;
+  for (i = 1; i < count_; i++) {
+    j = i;
+    issorted_ = true;
+    for (j = i; j > 0 && values_[p_[j - 1]] > values_[p_[j]]; j--) {
+      t = p_[j - 1];
+      p_[j - 1] = p_[j];
+      p_[j] = t;
+      issorted_ = false;
+    }
+    if (issorted_) break;
+  }
+}
+#else
 void Median::bubblesort()
 {
   uint8_t i, j, t;
@@ -74,17 +89,6 @@ void Median::bubblesort()
     if (issorted_) break;
   }
   issorted_ = true;
-}
-#else
-void Median::insertionsort() {
-  for(i_ = 1; i_ < count_; i_++) {
-    j_ = i_;
-    for(j_ = i_; j_ > 0 && values_[p_[j_ - 1]] >  values_[p_[j_]]; j_--) {
-      t_ = p_[j_ - 1];
-      p_[j_ - 1] = p_[j_];
-      p_[j_] = t_;
-    }
-  }
 }
 #endif
 

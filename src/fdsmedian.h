@@ -1,12 +1,7 @@
 #ifndef _FDS_ARDUINO_LIBRARY_MEDIAN_H_
 #define _FDS_ARDUINO_LIBRARY_MEDIAN_H_
 
-#if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
-#else
-#include "Arduino.h"
-//#include "WProgram.h"
-#endif
 
 #define FDS_MEDIAN_VERSION "0.0.1"
 
@@ -25,10 +20,6 @@
 #define MEDIAN_TYPE float
 #endif
 
-#ifndef MEDIAN_SORT
-#define MEDIAN_SORT bubblesort
-#endif
-
 namespace fds {
 namespace statistics {
 class Median {
@@ -44,10 +35,10 @@ protected:
   bool issorted_;
   MEDIAN_TYPE values_[MEDIAN_COUNT];
   uint8_t p_[MEDIAN_COUNT];
-#if MEDAIN_SORT == bubblesort
-  void bubblesort();
-#else
+#if defined(MEDIAN_SORT_INSERT)
   void insertionsort();
+#else
+  void bubblesort();
 #endif
 };
 }
