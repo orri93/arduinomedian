@@ -32,14 +32,10 @@ public:
 protected:
   uint8_t count_;
   uint8_t index_;
-  bool issorted_;
   MEDIAN_TYPE values_[MEDIAN_COUNT];
-  uint8_t p_[MEDIAN_COUNT];
-#if defined(MEDIAN_SORT_INSERT)
-  void insertionsort();
-#else
-  void bubblesort();
-#endif
+  uint8_t r_[MEDIAN_COUNT];
+  MEDIAN_TYPE median_;
+  bool iscache_;
 };
 }
 }
