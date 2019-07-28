@@ -28,7 +28,7 @@ public:
   void reset();
   void clearallbutlast();
   bool add(const MEDIAN_TYPE & value);
-  MEDIAN_TYPE median();  // returns the median == middle element
+  MEDIAN_TYPE get();  // returns the median == middle element
 protected:
   uint8_t count_;
   uint8_t index_;

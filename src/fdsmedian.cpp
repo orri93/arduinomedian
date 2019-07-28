@@ -32,7 +32,7 @@ bool Median::add(const MEDIAN_TYPE & value) {
   }
 }
 
-MEDIAN_TYPE Median::median() {
+MEDIAN_TYPE Median::get() {
   if (!iscache_) {
     switch (count_) {
     case 0:
