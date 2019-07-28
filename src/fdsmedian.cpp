@@ -1,6 +1,6 @@
 #include "fdsmedian.h"
 
-#include <arduinosort.h>
+#include <gossort.h>
 
 namespace fds {
 namespace statistics {
