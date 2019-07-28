@@ -45,7 +45,7 @@ MEDIAN_TYPE Median::get() {
       median_ = (values_[0] + values_[1]) / 2.0F;
       break;
     default:
-      fds::sort::real::reference::insertion(values_, r_, count_);
+      gos::sort::real::reference::insertion(values_, r_, count_);
       if (count_ & 0x01)
         median_ = values_[r_[count_ / 2]];
       else
