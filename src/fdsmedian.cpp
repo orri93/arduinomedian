@@ -1,6 +1,5 @@
 #include "fdsmedian.h"
 
-#define SORT_FLOAT_REFERENCES
 #include <gossort.h>
 
 namespace fds {
