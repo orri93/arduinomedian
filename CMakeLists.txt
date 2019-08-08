@@ -7,4 +7,4 @@ set(CMAKE_PLATFORM_INDEPENDENT_CODE ON)
 
 include_directories(
   ${sublibraries_include}
-  ${CMAKE_SOURCE_DIR}/sublibraries/arduinosort/src)
+  "${arduino_unit_testing_sublibraries_dir}/arduinosort/src")
